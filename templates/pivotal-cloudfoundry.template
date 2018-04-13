@@ -245,50 +245,50 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-ec8dc18a
-      opsman: ami-15015473
+      bootstrap: ami-205e4f5c
+      opsman: ami-cd4755b1
     ap-northeast-2:
-      bootstrap: ami-1314b97d
-      opsman: ami-929a36fc
+      bootstrap: ami-dd3e91b3
+      opsman: ami-4ace6024
     ap-south-1:
-      bootstrap: ami-b783ddd8
-      opsman: ami-60ebb20f
+      bootstrap: ami-b6ad88d9
+      opsman: ami-8dceeae2
     ap-southeast-1:
-      bootstrap: ami-e7dc889b
-      opsman: ami-6cb1e110
+      bootstrap:  ami-e1d2f79d
+      opsman: ami-7b210707
     ap-southeast-2:
-      bootstrap: ami-c69050a4
-      opsman: ami-c35390a1
+      bootstrap: ami-6f2fe10d
+      opsman: ami-4535fc27
     ca-central-1:
-      bootstrap: ami-ae49ceca
-      opsman: ami-0a1c9b6e
+      bootstrap: ami-77078113
+      opsman: ami-1e28ae7a
     eu-central-1:
-      bootstrap: ami-7d5a3412
-      opsman: ami-a27b10cd
+      bootstrap: ami-f0401e1b
+      opsman: ami-ec441c07
     eu-west-1:
-      bootstrap: ami-7214560b
-      opsman: ami-263d755f
+      bootstrap: ami-551d442c
+      opsman: ami-31613b48
     eu-west-2:
-      bootstrap: ami-bdf116da
-      opsman: ami-b850b7df
+      bootstrap: ami-eb73928c
+      opsman: ami-f4fa1a93
     eu-west-3:
-      bootstrap: ami-0b68de76
-      opsman: ami-3f45f342
+      bootstrap: ami-aa01b7d7
+      opsman: ami-5bfd4c26
     sa-east-1:
-      bootstrap: ami-0632786a
-      opsman: ami-24401548
+      bootstrap: ami-fb83d597
+      opsman: ami-fe421392
     us-east-1:
-      bootstrap: ami-05fd0378
-      opsman: ami-b024e6cd
+      bootstrap: ami-dccb65a1
+      opsman: ami-8406d8fb
     us-east-2:
-      bootstrap: ami-856c5ae0
-      opsman: ami-7cc0f619
+      bootstrap: ami-272d1d42
+      opsman: ami-ebad9d8e
     us-west-1:
-      bootstrap: ami-b55d48d5
-      opsman: ami-622d3902
+      bootstrap: ami-b42232d4
+      opsman: ami-ad0a19cd
     us-west-2:
-      bootstrap: ami-5269fd2a
-      opsman: ami-9ef467e6
+      bootstrap: ami-a79ef9df
+      opsman: ami-71a8c809
 
 Resources:
   PCFBase:
