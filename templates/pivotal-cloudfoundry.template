@@ -228,55 +228,61 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-031c03d7b47d364be
+      bootstrap: ami-0347de2b60852a9a3
       opsman: ami-0ab711e98a284459e
     ap-northeast-2:
-      bootstrap: ami-0a946c342b206755d
+      bootstrap: ami-0d10debe8165b47d2
       opsman: ami-012e9b4f269fe1338
     ap-south-1:
-      bootstrap: ami-058089c3138faae49
+      bootstrap: ami-029b890665af40bbe
       opsman: ami-08f0d06e48094ecd5
     ap-southeast-1:
-      bootstrap: ami-0fa1af9748d8872aa
+      bootstrap: ami-0edfb8d29fa35b3b1
       opsman: ami-01064b3bbf89d4ebe
     ap-southeast-2:
-      bootstrap: ami-0dec7e6d13aa0ea68
+      bootstrap: ami-028d8e449b84d33b0
       opsman: ami-02cf0143d80d8e97c
     ca-central-1:
-      bootstrap: ami-07ac4f0472a28341a
+      bootstrap: ami-0f599262bec365e24
       opsman: ami-06b32996b09044dd7
     eu-central-1:
-      bootstrap: ami-07de923617fe03036
+      bootstrap: ami-08c78a850c605c9da
       opsman: ami-0d1c975a00128d356
     eu-north-1:
-      bootstrap: ami-099b41ca327743486
+      bootstrap: ami-044371f2b86196e1f
       opsman: ami-0b2b705e6c89433e3
     eu-west-1:
-      bootstrap: ami-0c75123737a55c1d0
+      bootstrap: ami-0137ceea9b83825a3
       opsman: ami-022edb40013af2a5b
     eu-west-2:
-      bootstrap: ami-09b975b03531eeb0c
+      bootstrap: ami-0b6a037c1994595bf
       opsman: ami-09c17667b78a04801
     eu-west-3:
-      bootstrap: ami-0740756295e171c5f
+      bootstrap: ami-0cf163c4f58d7ac4d
       opsman: ami-042293ff365182827
     sa-east-1:
-      bootstrap: ami-04c5a34563e6ecd8e
+      bootstrap: ami-0ec8dd632b4584d45
       opsman: ami-0ffaf8d69f78e93c1
     us-east-1:
-      bootstrap: ami-029f22f9227cf7bf1
+      bootstrap: ami-093836a0153445b8b
       opsman: ami-059a9848fa53ffaf9
     us-east-2:
-      bootstrap: ami-0206605a28cc37dc9
+      bootstrap: ami-0d5701713ce790519
       opsman: ami-057fe4d24bfb5d174
     us-west-1:
-      bootstrap: ami-00a483d5799937487
+      bootstrap: ami-0751e7aab8e6cc15a
       opsman: ami-0ead22957d6d66575
     us-west-2:
-      bootstrap: ami-0c10c62be93bab555
+      bootstrap: ami-00bde06a2baca7f1a
       opsman: ami-099209efd6d1bdaf3
 
 Resources:
+  # ResourceGroup:
+  #   Type: AWS::Inspector::CreateResourceGroup
+  #   Properties:
+  #     ResourceGroupTags:
+  #       - Key: aws:cloudformation:stack-name
+  #         Value: !Sub ${AWS::StackName}
   PCFBase:
     Type: AWS::CloudFormation::Stack
     Properties:
@@ -572,11 +578,9 @@ Resources:
                 echo "${PCFBase.Outputs.PcfOpsManPrivateIPAddress} opsman.${Domain}" >> /etc/hosts
             c_chmod_stuff:
               command: |
-                mkdir -p /home/ubuntu/quickstart/state
+                # mkdir -p /home/ubuntu/quickstart/state
                 chown -R ubuntu:ubuntu /home/ubuntu/quickstart
-            d_copy_version_confifg_to_known_location:
-              command: cp /home/ubuntu/quickstart/version_config.json /var/local/version_config.json
-            e_install_delete_daemon:
+            d_install_delete_daemon:
               command: /home/ubuntu/quickstart/daemon/install.sh
   BootstrapEIP:
     Type: AWS::EC2::EIP
