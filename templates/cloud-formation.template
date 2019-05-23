@@ -2941,6 +2941,7 @@
                 "ec2:DescribeKeypairs",
                 "ec2:CreateKeyPair",
                 "ec2:DeleteKeyPair",
+                "ec2:ImportKeyPair",
                 "ec2:DescribeRegions",
                 "ec2:DescribeSnapshots",
                 "ec2:CreateSnapshot",
