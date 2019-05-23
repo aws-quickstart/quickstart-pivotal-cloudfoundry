@@ -39,4 +39,3 @@ openssl req -text -noout -in ${ROOT_DOMAIN}.csr
 openssl x509 -req -days 3650 -in ${ROOT_DOMAIN}.csr -signkey ${ROOT_DOMAIN}.key -out ${ROOT_DOMAIN}.crt -extensions v3_req -extfile ${SSL_FILE}
 openssl x509 -in ${ROOT_DOMAIN}.crt -text -noout
 rm ${ROOT_DOMAIN}.csr
-
