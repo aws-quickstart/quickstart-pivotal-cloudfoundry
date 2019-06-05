@@ -1,47 +1,5 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Conditions": {
-    "CreateRDS": {
-      "Fn::And": [
-        {
-          "Fn::Not": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "RDSDBName"
-                },
-                ""
-              ]
-            }
-          ]
-        },
-        {
-          "Fn::Not": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "RDSUsername"
-                },
-                ""
-              ]
-            }
-          ]
-        },
-        {
-          "Fn::Not": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "RDSPassword"
-                },
-                ""
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  },
   "Description": "CloudFormation template for configuring Pivotal Cloud Foundry on AWS QS(qs-1ngltrcp5)",
   "Mappings": {
     "NATRegionToAmiMap": {
@@ -104,21 +62,6 @@
     "OpsManSSHKeyPairName": {
       "Type": "AWS::EC2::KeyPair::KeyName",
       "Description": "Select the SSH keypair to use for the Ops Manager VM"
-    },
-    "RDSDBName": {
-      "Type": "String",
-      "AllowedPattern": "([a-zA-Z][a-zA-Z0-9]{3,}|^$)",
-      "Description": "RDS database name (leave blank to skip RDS). Nust begin with a letter and contain only alphanumeric characters."
-    },
-    "RDSUsername": {
-      "Type": "String",
-      "Description": "RDS database username (leave blank to skip RDS)"
-    },
-    "RDSPassword": {
-      "Type": "String",
-      "NoEcho": "true",
-      "AllowedPattern": "(.{8,}|^$)",
-      "Description": "RDS database password (leave blank to skip RDS, must be 8+ chars)"
     },
     "ERTCertificateARN": {
       "Type": "String",
@@ -579,131 +522,6 @@
             }
           }
         ]
-      }
-    },
-    "PcfRDSSubnetAZ1": {
-      "Type": "AWS::EC2::Subnet",
-      "Properties": {
-        "CidrBlock": "10.0.12.0/24",
-        "AvailabilityZone": {
-          "Ref": "AvailabilityZone1"
-        },
-        "VpcId": {
-          "Ref": "PcfVPC"
-        },
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": {
-              "Fn::Join": [
-                "",
-                [
-                  {
-                    "Ref": "EnvironmentID"
-                  },
-                  "-rds-subnet-az1"
-                ]
-              ]
-            }
-          }
-        ]
-      }
-    },
-    "PcfRDSSubnetAZ2": {
-      "Type": "AWS::EC2::Subnet",
-      "Properties": {
-        "CidrBlock": "10.0.13.0/24",
-        "AvailabilityZone": {
-          "Ref": "AvailabilityZone2"
-        },
-        "VpcId": {
-          "Ref": "PcfVPC"
-        },
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": {
-              "Fn::Join": [
-                "",
-                [
-                  {
-                    "Ref": "EnvironmentID"
-                  },
-                  "-rds-subnet-az2"
-                ]
-              ]
-            }
-          }
-        ]
-      }
-    },
-    "PcfRDSSubnetAZ3": {
-      "Type": "AWS::EC2::Subnet",
-      "Properties": {
-        "CidrBlock": "10.0.14.0/24",
-        "AvailabilityZone": {
-          "Ref": "AvailabilityZone3"
-        },
-        "VpcId": {
-          "Ref": "PcfVPC"
-        },
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": {
-              "Fn::Join": [
-                "",
-                [
-                  {
-                    "Ref": "EnvironmentID"
-                  },
-                  "-rds-subnet-az3"
-                ]
-              ]
-            }
-          }
-        ]
-      }
-    },
-    "PcfRds": {
-      "Type": "AWS::RDS::DBInstance",
-      "Condition": "CreateRDS",
-      "Properties": {
-        "AllocatedStorage": "100",
-        "DBInstanceClass": "db.m4.large",
-        "DBInstanceIdentifier": {
-          "Fn::Join": [
-            "",
-            [
-              {
-                "Ref": "EnvironmentID"
-              },
-              "-rds"
-            ]
-          ]
-        },
-        "Engine": "mariadb",
-        "EngineVersion": "10.1.31",
-        "MultiAZ": "True",
-        "DBName": {
-          "Ref": "RDSDBName"
-        },
-        "Iops": "1000",
-        "MasterUsername": {
-          "Ref": "RDSUsername"
-        },
-        "MasterUserPassword": {
-          "Ref": "RDSPassword"
-        },
-        "PubliclyAccessible": "False",
-        "VPCSecurityGroups": [
-          {
-            "Ref": "PcfRdsSecurityGroup"
-          }
-        ],
-        "DBSubnetGroupName": {
-          "Ref": "PcfRdsSubnetGroup"
-        }
       }
     },
     "PcfServicesSubnetAZ1": {
@@ -1817,39 +1635,6 @@
         ]
       }
     },
-    "PcfRdsSubnetGroup": {
-      "Type": "AWS::RDS::DBSubnetGroup",
-      "Properties": {
-        "DBSubnetGroupDescription": "RDS Subnet Group",
-        "SubnetIds": [
-          {
-            "Ref": "PcfRDSSubnetAZ1"
-          },
-          {
-            "Ref": "PcfRDSSubnetAZ2"
-          },
-          {
-            "Ref": "PcfRDSSubnetAZ3"
-          }
-        ],
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": {
-              "Fn::Join": [
-                "",
-                [
-                  {
-                    "Ref": "EnvironmentID"
-                  },
-                  "-rds-subnet-group"
-                ]
-              ]
-            }
-          }
-        ]
-      }
-    },
     "PcfVmsSecurityGroup": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
@@ -1918,31 +1703,6 @@
                     "Ref": "EnvironmentID"
                   },
                   "-elb-security-group"
-                ]
-              ]
-            }
-          }
-        ]
-      }
-    },
-    "PcfRdsSecurityGroup": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "RDS Security Group",
-        "VpcId": {
-          "Ref": "PcfVPC"
-        },
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": {
-              "Fn::Join": [
-                "",
-                [
-                  {
-                    "Ref": "EnvironmentID"
-                  },
-                  "-rds-security-group"
                 ]
               ]
             }
@@ -2146,39 +1906,6 @@
         },
         "SubnetId": {
           "Ref": "PcfManagementSubnetAZ3"
-        }
-      }
-    },
-    "PcfRDSSubnetAclAZ1": {
-      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
-      "Properties": {
-        "NetworkAclId": {
-          "Ref": "PcfNetworkAcl"
-        },
-        "SubnetId": {
-          "Ref": "PcfRDSSubnetAZ1"
-        }
-      }
-    },
-    "PcfRDSSubnetAclAZ2": {
-      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
-      "Properties": {
-        "NetworkAclId": {
-          "Ref": "PcfNetworkAcl"
-        },
-        "SubnetId": {
-          "Ref": "PcfRDSSubnetAZ2"
-        }
-      }
-    },
-    "PcfRDSSubnetAclAZ3": {
-      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
-      "Properties": {
-        "NetworkAclId": {
-          "Ref": "PcfNetworkAcl"
-        },
-        "SubnetId": {
-          "Ref": "PcfRDSSubnetAZ3"
         }
       }
     },
@@ -2562,18 +2289,6 @@
         "CidrIp": "0.0.0.0/0"
       }
     },
-    "PcfIngressRuleRds1": {
-      "Type": "AWS::EC2::SecurityGroupIngress",
-      "Properties": {
-        "GroupId": {
-          "Ref": "PcfRdsSecurityGroup"
-        },
-        "IpProtocol": "tcp",
-        "FromPort": "3306",
-        "ToPort": "3306",
-        "CidrIp": "10.0.0.0/16"
-      }
-    },
     "PcfIngressRuleNat1": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
@@ -2636,16 +2351,6 @@
         },
         "IpProtocol": "-1",
         "CidrIp": "0.0.0.0/0"
-      }
-    },
-    "PcfEgressRuleRds1": {
-      "Type": "AWS::EC2::SecurityGroupEgress",
-      "Properties": {
-        "GroupId": {
-          "Ref": "PcfRdsSecurityGroup"
-        },
-        "IpProtocol": "-1",
-        "CidrIp": "10.0.0.0/16"
       }
     },
     "PcfEgressRuleNat1": {
@@ -3169,36 +2874,6 @@
     "PcfVmsSecurityGroup": {
       "Value": {
         "Ref": "PcfVmsSecurityGroup"
-      }
-    },
-    "PcfRdsAddress": {
-      "Condition": "CreateRDS",
-      "Value": {
-        "Fn::GetAtt": [
-          "PcfRds",
-          "Endpoint.Address"
-        ]
-      }
-    },
-    "PcfRdsPort": {
-      "Condition": "CreateRDS",
-      "Value": {
-        "Fn::GetAtt": [
-          "PcfRds",
-          "Endpoint.Port"
-        ]
-      }
-    },
-    "PcfRdsUsername": {
-      "Condition": "CreateRDS",
-      "Value": {
-        "Ref": "RDSUsername"
-      }
-    },
-    "PcfRdsDBName": {
-      "Condition": "CreateRDS",
-      "Value": {
-        "Ref": "RDSDBName"
       }
     },
     "PcfElbWebName": {

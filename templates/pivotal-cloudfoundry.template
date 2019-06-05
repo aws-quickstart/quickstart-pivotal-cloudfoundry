@@ -32,12 +32,6 @@ Metadata:
       - OpsManagerAdminPassword
       - CompanyName
     - Label:
-        default: Amazon RDS
-      Parameters:
-      - RdsDBName
-      - RdsUsername
-      - RdsPassword
-    - Label:
         default: AWS Quick Start Configuration
       Parameters:
       - QSS3BucketName
@@ -49,12 +43,6 @@ Metadata:
     ParameterLabels:
       EnvironmentID:
         default: Environment ID
-      RdsDBName:
-        default: RDS DB Name
-      RdsUsername:
-        default: RDS Username
-      RdsPassword:
-        default: RDS Password
       DeploymentSize:
         default: Size of the Deployment
       SkipSSLValidation:
@@ -103,20 +91,6 @@ Parameters:
     Type: String
     Description: CIDR range allowed to connect to Pivotal Ops Manager and Bootstrap
       instances
-  RdsDBName:
-    Type: String
-    MinLength: '4'
-    Default: bosh
-    Description: Database name
-  RdsUsername:
-    Type: String
-    Description: Database username
-  RdsPassword:
-    Type: String
-    NoEcho: 'true'
-    MinLength: '8'
-    AllowedPattern: '[\w-_]*'
-    Description: Database password
   SSLCertificateARN:
     Type: String
     Description: ARN for pre-uploaded SSL certificate.
@@ -277,12 +251,6 @@ Mappings:
       opsman: ami-0e7b23e61f8f64ff0
 
 Resources:
-  # ResourceGroup:
-  #   Type: AWS::Inspector::CreateResourceGroup
-  #   Properties:
-  #     ResourceGroupTags:
-  #       - Key: aws:cloudformation:stack-name
-  #         Value: !Sub ${AWS::StackName}
   PCFBase:
     Type: AWS::CloudFormation::Stack
     Properties:
@@ -306,9 +274,6 @@ Resources:
         - opsman
         OpsManIngressCidr: !Ref OpsManagerIngress
         OpsManSSHKeyPairName: !Ref PCFKeyPair
-        RDSDBName: !Ref RdsDBName
-        RDSUsername: !Ref RdsUsername
-        RDSPassword: !Ref RdsPassword
         ERTCertificateARN: !Ref SSLCertificateARN
       TemplateURL: !Sub https://${QSS3BucketName}.s3.amazonaws.com/${QSS3KeyPrefix}templates/cloud-formation.template
   CustomResourceSQSQueue:
@@ -437,10 +402,6 @@ Resources:
       Type: String
       Value: !Sub |
         {
-        "PcfRdsPassword": "${RdsPassword}",
-        "PcfRdsPort": "${PCFBase.Outputs.PcfRdsPort}",
-        "PcfRdsAddress": "${PCFBase.Outputs.PcfRdsAddress}",
-        "PcfRdsUsername": "${PCFBase.Outputs.PcfRdsUsername}",
         "PcfDeploymentSize": "${DeploymentSize}",
         "PcfVpc": "${PCFBase.Outputs.PcfVpc}",
         "PcfAvailabilityZone1": "${PCFBase.Outputs.PcfManagementSubnetAZ1AvailabilityZone}",
