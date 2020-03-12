@@ -202,52 +202,52 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-0b0ced895de84f208
+      bootstrap: ami-08be32e3cef57beb4
       opsman: ami-06833eb9cd1649ff7
     ap-northeast-2:
-      bootstrap: ami-029cf485734f352f9
+      bootstrap: ami-0b46491a38e0f8834
       opsman: ami-051194987fb2e1370
     ap-south-1:
-      bootstrap: ami-04d26085139475cd2
+      bootstrap: ami-02d1233d2edb6f848
       opsman: ami-06c817ced2dd64fff
     ap-southeast-1:
-      bootstrap: ami-01bd779171ea76702
+      bootstrap: ami-0460d2461184c361a
       opsman: ami-06b46a0ddfa419463
     ap-southeast-2:
-      bootstrap: ami-0e66aec9017c8f005
+      bootstrap: ami-04d3911272309950b
       opsman: ami-09e68ef5ed3f2c671
     ca-central-1:
-      bootstrap: ami-049519a8b3f8b9f91
+      bootstrap: ami-0aab13737f42e8c12
       opsman: ami-010c7014c050d4014
     eu-central-1:
-      bootstrap: ami-0e7094d5e321aede6
+      bootstrap: ami-09514294dc83ed181
       opsman: ami-082e8ab9e90ebf491
     eu-north-1:
-      bootstrap: ami-0d81e4b05dc9fd364
+      bootstrap: ami-03b8c50f1bcbe0fda
       opsman: ami-05e2efd786876d732
     eu-west-1:
-      bootstrap: ami-0f5e54180d50b4738
+      bootstrap: ami-0695d76d771259ea6
       opsman: ami-08755c8e98854c6c9
     eu-west-2:
-      bootstrap: ami-02866bc726c37a735
+      bootstrap: ami-091a2e486cc04b33f
       opsman: ami-0270efd1991e63203
     eu-west-3:
-      bootstrap: ami-097c25b12b62866c5
+      bootstrap: ami-02fcc7478ff9688ce
       opsman: ami-04f94e61b2f85516b
     sa-east-1:
-      bootstrap: ami-0aa4f5dd5523ea27b
+      bootstrap: ami-06147657c805bd486
       opsman: ami-09e0f663d7a304065
     us-east-1:
-      bootstrap: ami-008317f3135cbefd5
+      bootstrap: ami-0281fd345a13b7f0e
       opsman: ami-06f5735dc38e4a4a9
     us-east-2:
-      bootstrap: ami-0c47afe1061318820
+      bootstrap: ami-08c5c4ef9578326a6
       opsman: ami-05746560b0122ed75
     us-west-1:
-      bootstrap: ami-0430e29a01bc93bcb
+      bootstrap: ami-0068c97b4e851cd2f
       opsman: ami-0bc80b42b8029a79f
     us-west-2:
-      bootstrap: ami-00fe924df4b438a82
+      bootstrap: ami-077908aee857ad2ed
       opsman: ami-01f9623c07aebcd7f
 
 Resources:
