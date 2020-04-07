@@ -202,52 +202,52 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-0f17a03857b5320ca
+      bootstrap: ami-026b918c42558f02a
       opsman: ami-0630ba117a2ffd192
     ap-northeast-2:
-      bootstrap: ami-097cbfb16abf03fe7
+      bootstrap: ami-0b2a45ee41ff999ff
       opsman: ami-09d51ec20f8c3dba6
     ap-south-1:
-      bootstrap: ami-095d4d7a67ac3ce69
+      bootstrap: ami-0b51ba350dd37b271
       opsman: ami-037c770279a9c9e79
     ap-southeast-1:
-      bootstrap: ami-0b98e487c64a7c4c6
+      bootstrap: ami-06cc0f20a3b24024b
       opsman: ami-039f24809a43d3791
     ap-southeast-2:
-      bootstrap: ami-0f66a4af5d5931a3b
+      bootstrap: ami-06dd5743ee4163329
       opsman: ami-05666c93842c6bfab
     ca-central-1:
-      bootstrap: ami-045a23a24da875362
+      bootstrap: ami-03902afa6ca6983df
       opsman: ami-042d7c3c3d49c6b49
     eu-central-1:
-      bootstrap: ami-09d0e98764469a5c9
+      bootstrap: ami-0d1ffb34d44baf541
       opsman: ami-0b7a49e2f3ba631ea
     eu-north-1:
-      bootstrap: ami-079389ccde1bda60f
+      bootstrap: ami-022aea844578c07dd
       opsman: ami-0b12a57a89a28fa66
     eu-west-1:
-      bootstrap: ami-07ecad89f294ef5ce
+      bootstrap: ami-0373a28c30ba19407
       opsman: ami-05dd28535e1cb3fad
     eu-west-2:
-      bootstrap: ami-0082f92397a4a2633
+      bootstrap: ami-0b83fd51386495c86
       opsman: ami-055a768874ca1210a
     eu-west-3:
-      bootstrap: ami-0f0cb1785015263a2
+      bootstrap: ami-05517e95748470d45
       opsman: ami-0a095f368b803f9ec
     sa-east-1:
-      bootstrap: ami-03a26b9f10b669484
+      bootstrap: ami-04db8d161d1789e1a
       opsman: ami-09a183cc4be6502f7
     us-east-1:
-      bootstrap: ami-05e5b641c574d99a7
+      bootstrap: ami-0e53ac95073d8131e
       opsman: ami-0fc0d66ab5800a5cc
     us-east-2:
-      bootstrap: ami-0fe9f7fa4514828ad
+      bootstrap: ami-0f5ba29e90ffef422
       opsman: ami-05bad2f0dc4f17bba
     us-west-1:
       bootstrap: ami-0e251a2c6c4139643
       opsman: ami-0a1183b3ea607d49e
     us-west-2:
-      bootstrap: ami-0b04c49b88cdb1db1
+      bootstrap: ami-0bd269fe25ab7b15e
       opsman: ami-0a6fd64d4e26d2e00
 
 Resources:
